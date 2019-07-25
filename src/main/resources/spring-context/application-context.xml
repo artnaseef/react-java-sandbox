@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd
+       ">
+
+    <bean id="helloWorldFromSpring" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+        <property name="targetObject">
+            <util:constant static-field="java.lang.System.out"/>
+        </property>
+        <property name="targetMethod" value="println"/>
+        <property name="arguments">
+            <list>
+                <value>Hello World from Spring Context</value>
+            </list>
+        </property>
+    </bean>
+</beans>
