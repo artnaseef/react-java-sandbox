@@ -18,6 +18,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <jetty.version>9.4.15.v20190215</jetty.version>
+        <jersey.version>1.19.1</jersey.version>
         <log4j.version>1.2.17</log4j.version>
         <slf4j.version>1.7.26</slf4j.version>
         <spring.version>5.1.6.RELEASE</spring.version>
@@ -45,6 +46,20 @@
             <groupId>org.eclipse.jetty</groupId>
             <artifactId>jetty-server</artifactId>
             <version>${jetty.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+
+        <!--        -->
+        <!-- JERSEY -->
+        <!--        -->
+        <dependency>
+            <groupId>com.sun.jersey</groupId>
+            <artifactId>jersey-bundle</artifactId>
+            <version>${jersey.version}</version>
         </dependency>
 
         <!--         -->
