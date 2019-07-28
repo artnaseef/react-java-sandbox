@@ -4,83 +4,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.artnaseef</groupId>
-    <artifactId>react-java-sandbox</artifactId>
+    <artifactId>react-java-sandbox-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <name>react-java-sandbox</name>
+    <name>React Java Sandbox ::: Parent</name>
     <description>
         Sandbox project for working with React and Java.
     </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <jetty.version>9.4.15.v20190215</jetty.version>
-        <jersey.version>1.19.1</jersey.version>
-        <log4j.version>1.2.17</log4j.version>
-        <slf4j.version>1.7.26</slf4j.version>
-        <spring.version>5.1.6.RELEASE</spring.version>
     </properties>
 
-    <dependencies>
-        <!--        -->
-        <!-- SPRING -->
-        <!--        -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-
-        <!--       -->
-        <!-- JETTY -->
-        <!--       -->
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-server</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jetty</groupId>
-            <artifactId>jetty-servlet</artifactId>
-            <version>${jetty.version}</version>
-        </dependency>
-
-        <!--        -->
-        <!-- JERSEY -->
-        <!--        -->
-        <dependency>
-            <groupId>com.sun.jersey</groupId>
-            <artifactId>jersey-bundle</artifactId>
-            <version>${jersey.version}</version>
-        </dependency>
-
-        <!--         -->
-        <!-- LOGGING -->
-        <!--         -->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>log4j</groupId>
-            <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-    </dependencies>
+    <modules>
+        <module>react-java-sandbox.java</module>
+    </modules>
 
     <build>
         <plugins>
@@ -92,88 +32,6 @@
                     <source>1.8</source>
                     <target>1.8</target>
                 </configuration>
-            </plugin>
-
-            <!-- Build a stand-alone, executable JAR file -->
-            <!-- https://stackoverflow.com/questions/6831954/how-to-package-an-apache-cxf-application-into-a-monolithic-jar-with-the-maven-s -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <transformers>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.artnaseef.sandbox.react.Main</mainClass>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/spring.handlers</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/spring.schemas</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/services/com.sun.tools.xjc.Plugin</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/cxf/cxf.extension</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/extensions.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/cxf/extensions.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/cxf/bus-extensions.txt</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/cxf/bus-extensions.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/wsdl.plugin.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/tools.service.validator.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.cxf.maven.PluginTransformer">
-                                    <resource>META-INF/tools-plugin.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.maven.plugins.shade.resource.XmlAppendingTransformer">
-                                    <resource>META-INF/cxf/java2wsbeans.xml</resource>
-                                </transformer>
-                                <transformer implementation="org.apache.cxf.maven.CXFAllTransformer" />
-                            </transformers>
-                            <!-- http://zhentao-li.blogspot.com/2012/06/maven-shade-plugin-invalid-signature.html -->
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>executable</shadedClassifierName>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.apache.cxf</groupId>
-                        <artifactId>cxf-buildtools</artifactId>
-                        <version>2.2.12</version>
-                        <type>jar</type>
-                        <scope>compile</scope>
-                    </dependency>
-                </dependencies>
             </plugin>
         </plugins>
     </build>
