@@ -9,6 +9,8 @@
 1. [ ] Add React Javascript
 1. [ ] Add HTTPS support
 1. [ ] Add Login credentials
+1. [ ] Node build use target folder, or clean build output in other folders
+
 
 # NOTES
 

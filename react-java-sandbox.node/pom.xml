@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.artnaseef</groupId>
+    <artifactId>react-java-sandbox-node</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+
+    <name>react-java-sandbox-node</name>
+    <description>
+        React sources for the project using node.
+    </description>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+    </dependencies>
+
+    <build>
+        <resources>
+            <resource>
+                <directory>build/</directory>
+                <filtering>false</filtering>
+                <targetPath>${project.build.outputDirectory}/static-html</targetPath>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.7.6</version>
+                <executions>
+                    <!-- INSTALL node (and npm?) locally -->
+                    <execution>
+                        <id>install node</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                    </execution>
+                    <!-- RUN 'npm install' -->
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- RUN 'npm run build' -->
+                    <execution>
+                        <id>npm build</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+
+                        <phase>generate-resources</phase>
+
+                        <configuration>
+                            <arguments>run build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <nodeVersion>v10.16.0</nodeVersion>
+
+                    <!--&lt;!&ndash; optional: with node version greater than 4.0.0 will use npm provided by node distribution &ndash;&gt;-->
+                    <!--<npmVersion>2.15.9</npmVersion>-->
+
+                    <!--&lt;!&ndash; optional: where to download node and npm from. Defaults to https://nodejs.org/dist/ &ndash;&gt;-->
+                    <!--<downloadRoot>http://myproxy.example.org/nodejs/</downloadRoot>-->
+
+                    <!-- Using target/ requires copying all of the sources under target first. -->
+                    <!--<installDirectory>target/</installDirectory>-->
+                    <!--<workingDirectory>target/</workingDirectory>-->
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
