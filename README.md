@@ -9,3 +9,9 @@
 1. [ ] Add React Javascript
 1. [ ] Add HTTPS support
 1. [ ] Add Login credentials
+
+# NOTES
+
+* `npm start` in the create-react-app root starts the React application and opens the web browser
+* `npm run build` builds the production version of the project in the build subdirectory
+* Currently, the React production build is manually copied to the Java source tree
