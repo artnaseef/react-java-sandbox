@@ -5,8 +5,8 @@
 1. [x] Add a REST service
 1. [x] Add SLF4J + LOG4J
 1. [x] Add WEB service for static content
-1. [ ] Add HTML
-1. [ ] Add React Javascript
+1. [x] Add HTML
+1. [x] Add React Javascript
 1. [ ] Add HTTPS support
 1. [ ] Add Login credentials
 1. [ ] Node build use target folder, or clean build output in other folders
